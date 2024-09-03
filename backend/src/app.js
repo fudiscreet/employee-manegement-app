@@ -3,6 +3,7 @@ const express = require('express');
 const multer = require('multer');
 const cors = require('cors');
 const errorHandler = require('../middlewares/errorHandler');
+const serverless = require('serverless-http');
 
 const app = express();
 app.use(cors());
@@ -30,3 +31,5 @@ app.listen(port, () => {
 });
 
 module.exports = app;
+// Lambda用のハンドラーをエクスポート
+module.exports.handler = serverless(app);
